@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Era - Countdown Timer</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<nav>
+			<h1>Era</h1>
+			<div id="you" onclick="this.classList.toggle('open');">
+				<img src="https://avatars3.githubusercontent.com/u/8862273?s=460&v=4">
+				<div id="menu">
+					<a href="#" id="dark_mode">Dark mode</a>
+					<a href="#" id="log_out">Log out</a>
+				</div>
+			</div>
+		</nav>
+		<main>
+			<div class="timer blue">
+				<div class="counters">
+					<div>
+						<span class="number">4</span>
+						<span class="label">days</span>
+					</div>
+					<div>
+						<span class="number">21</span>
+						<span class="label">hours</span>
+					</div>
+					<div>
+						<span class="number">7</span>
+						<span class="label">minutes</span>
+					</div>
+					<div>
+						<span class="number">54</span>
+						<span class="label">seconds</span>
+					</div>
+				</div>
+				<span class="title">Sam's Birthday</span>
+			</div>
+		</main>
+		<script src="script.js"></script>
+	</body>
+</html>
