@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Era - Countdown Timer</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+		<meta name="google-signin-client_id" content="186421475342-7ha1ugnig1oe1s912ke1hl5s2qr5mnh5.apps.googleusercontent.com">
+
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<nav>
+			<h1>Era</h1>
+			<div id="you" onclick="this.classList.toggle('open');">
+				<img src="" id="profile_image">
+				<div id="menu">
+					<a href="#" id="dark_mode">Dark mode</a>
+					<a href="#" id="log_out">Log out</a>
+				</div>
+			</div>
+		</nav>
+		<main>
+			<div class="timer blue">
+				<div class="counters">
+					<div>
+						<span class="number">4</span>
+						<span class="label">days</span>
+					</div>
+					<div>
+						<span class="number">21</span>
+						<span class="label">hours</span>
+					</div>
+					<div>
+						<span class="number">7</span>
+						<span class="label">minutes</span>
+					</div>
+					<div>
+						<span class="number">54</span>
+						<span class="label">seconds</span>
+					</div>
+				</div>
+				<span class="title">Sam's Birthday</span>
+			</div>
+			<div class="timer yellow">
+				<div class="counters">
+					<div>
+						<span class="number">5</span>
+						<span class="label">years</span>
+					</div>
+					<div>
+						<span class="number">288</span>
+						<span class="label">days</span>
+					</div>
+					<div>
+						<span class="number">14</span>
+						<span class="label">hours</span>
+					</div>
+					<div>
+						<span class="number">8</span>
+						<span class="label">minutes</span>
+					</div>
+					<div>
+						<span class="number">27</span>
+						<span class="label">seconds</span>
+					</div>
+				</div>
+				<span class="title">Graduation</span>
+			</div>
+		</main>
+		<a href="#" id="new_timer" title="New"></a>
+		<script src="https://apis.google.com/js/platform.js?onload=gapiLoad" async defer></script>
+		<script src="script.js"></script>
+	</body>
+</html>
