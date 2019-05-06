@@ -14,6 +14,9 @@ body.dark {
 	--color: #FFF;
 	--icon-filter: invert(1);
 }
+body.dialog {
+	overflow: hidden;
+}
 
 nav {
 	height: 50px;
@@ -21,12 +24,15 @@ nav {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	position: sticky;
+	top: 0;
+	background-color: var(--background-color);
 }
 nav h1 {
 	font-size: 26px;
 	margin: 0;
 	font-weight: 500;
-	font-family: 'Rubik';
+	font-family: 'Rubik', sans-serif;
 	padding: 0 16px;
 }
 nav #you {
@@ -71,6 +77,7 @@ nav #you #menu {
 	opacity: 0;
 	pointer-events: none;
 	transition: opacity .15s, transform .15s;
+	z-index: 100;
 }
 nav #you.open #menu {
 	transform: translateY(0);
@@ -101,24 +108,24 @@ main {
 	border-top: 8px solid var(--timer-color, rgba(0,0,0,.3));
 	margin-bottom: 20px;
 }
-.timer.red { --timer-color: #f44336 }
-.timer.pink { --timer-color: #e91e63 }
-.timer.purple { --timer-color: #9c27b0 }
-.timer.deep_purple { --timer-color: #673ab7 }
-.timer.indigo { --timer-color: #3f51b5 }
-.timer.blue { --timer-color: #2196f3 }
-.timer.light_blue { --timer-color: #03a9f4 }
-.timer.cyan { --timer-color: #00bcd4 }
-.timer.teal { --timer-color: #009688 }
-.timer.green { --timer-color: #4caf50 }
-.timer.light_green { --timer-color: #8bc34a }
-.timer.lime { --timer-color: #cddc39 }
-.timer.yellow { --timer-color: #ffeb3b }
-.timer.amber { --timer-color: #ffc107 }
-.timer.orange { --timer-color: #ff9800 }
-.timer.deep_orange { --timer-color: #ff5722 }
-.timer.brown { --timer-color: #795548 }
-.timer.blue_gray { --timer-color: #607d8b }
+.red { --timer-color: #f44336 }
+.pink { --timer-color: #e91e63 }
+.purple { --timer-color: #9c27b0 }
+.deep_purple { --timer-color: #673ab7 }
+.indigo { --timer-color: #3f51b5 }
+.blue { --timer-color: #2196f3 }
+.light_blue { --timer-color: #03a9f4 }
+.cyan { --timer-color: #00bcd4 }
+.teal { --timer-color: #009688 }
+.green { --timer-color: #4caf50 }
+.light_green { --timer-color: #8bc34a }
+.lime { --timer-color: #cddc39 }
+.yellow { --timer-color: #ffeb3b }
+.amber { --timer-color: #ffc107 }
+.orange { --timer-color: #ff9800 }
+.deep_orange { --timer-color: #ff5722 }
+.brown { --timer-color: #795548 }
+.blue_gray { --timer-color: #607d8b }
 .timer .counters {
 	display: flex;
 	justify-content: center;
@@ -190,4 +197,84 @@ main {
 	margin: 20px 0;
 	display: flex;
 	justify-content: center;
+}
+
+
+#new_dialog {
+	position: fixed;
+	top: 52px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: var(--background-color);
+	box-sizing: border-box;
+	padding: 30px 40px;
+	overflow-y: auto;
+	opacity: 0;
+	pointer-events: none;
+	transform: translateY(20px);
+	transition: opacity .2s, transform .2s;
+}
+body.dialog #new_dialog {
+	opacity: 1;
+	pointer-events: all;
+	transform: translateY(0);
+}
+#new_dialog .title {
+	font-size: 26px;
+	font-family: 'Rubik', sans-serif;
+	font-weight: 500;
+	text-align: center;
+	display: block;
+	padding: 0 0 20px;
+}
+#new_dialog label {
+	display: block;
+	font-size: 16px;
+	text-transform: uppercase;
+	font-weight: 600;
+	letter-spacing: 1.5px;
+	padding: 20px 0 5px;
+}
+#new_dialog div {
+	display: flex;
+	justify-content: flex-end;
+}
+#new_dialog .spacer {
+	display: block;
+	width: 10px;
+}
+#new_dialog input,
+#new_dialog select {
+	border: 2px solid var(--color);
+	background: none;
+	font-family: inherit;
+	color: inherit;
+	font-size: 18px;
+	padding: 12px 14px;
+	flex: 1;
+}
+#new_dialog input:focus {
+	outline: none;
+	box-shadow: inset 0 -4px 0 0 rgba(0,0,0,.4);
+}
+#new_dialog select:focus {
+	outline: none;
+	box-shadow: inset 0 -4px 0 0 var(--timer-color, rgba(0,0,0,.4));
+}
+#new_dialog button {
+	border: 2px solid var(--color);
+	background: none;
+	font-family: inherit;
+	color: inherit;
+	font-size: 18px;
+	padding: 12px 14px;
+	margin: 30px 0 0;
+	cursor: pointer;
+}
+#new_dialog #add_new {
+	box-shadow: inset 0 -4px 0 0 #4caf50;
+}
+#new_dialog #cancel {
+	box-shadow: inset 0 -4px 0 0 #f44336;
 }

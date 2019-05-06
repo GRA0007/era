@@ -67,6 +67,51 @@
 			</div>-->
 		</main>
 		<a href="#" id="new_timer" title="New"></a>
+		<form id="new_dialog">
+			<span class="title">New countdown</span>
+
+			<label for="name_input">Name</label>
+			<div>
+				<input id="name_input" type="text" placeholder="My birthday" required>
+			</div>
+
+			<label for="color_input">Color</label>
+			<div>
+				<select id="color_input" required oninput="this.className = this.value;">
+					<option value="red">Red</option>
+					<option value="pink">Pink</option>
+					<option value="purple">Purple</option>
+					<option value="deep_purple">Deep purple</option>
+					<option value="indigo">Indigo</option>
+					<option value="blue">Blue</option>
+					<option value="light_blue">Light blue</option>
+					<option value="cyan">Cyan</option>
+					<option value="teal">Teal</option>
+					<option value="green">Green</option>
+					<option value="light_green">Light green</option>
+					<option value="lime">Lime</option>
+					<option value="yellow">Yellow</option>
+					<option value="amber">Amber</option>
+					<option value="orange">Orange</option>
+					<option value="deep_orange">Deep orange</option>
+					<option value="brown">Brown</option>
+					<option value="blue_gray">Blue gray</option>
+				</select>
+			</div>
+
+			<label for="date_input">Countdown until</label>
+			<div>
+				<input id="date_input" type="date" required>
+				<span class="spacer"></span>
+				<input id="time_input" type="time" value="00:00" required>
+			</div>
+
+			<div>
+				<button type="reset" id="cancel" onclick="document.body.classList.remove('dialog');">Cancel</button>
+				<span style="flex:1"></span>
+				<button type="submit" id="add_new">Create</button>
+			</div>
+		</form>
 		<script src="https://apis.google.com/js/platform.js?onload=gapiLoad" async defer></script>
 		<script src="moment.min.js"></script>
 		<script src="app.js"></script>

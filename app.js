@@ -1,5 +1,9 @@
 let menu_darkMode = document.getElementById('dark_mode');
 let menu_logOut = document.getElementById('log_out');
+let button_newTimer = document.getElementById('new_timer');
+let new_dialog = document.getElementById('new_dialog');
+
+let timer_interval;
 
 menu_darkMode.onclick = function() {
 	if (document.body.classList.contains('dark')) {
@@ -30,7 +34,7 @@ function gapiLoad() {
 				document.getElementById('profile_image').src = profile.getImageUrl();
 				document.getElementById('profile_image').title = "Logged in as " + profile.getName();
 			} else {
-				window.location.replace('index.html');
+				//window.location.replace('index.html');
 			}
 		});
 	});
@@ -54,6 +58,34 @@ var timers = [
 	}
 ];
 loadTimers();
+
+button_newTimer.onclick = function() {
+	document.body.classList.add('dialog');
+	document.getElementById('name_input').focus();
+	return false;
+};
+
+new_dialog.onsubmit = function(e) {
+	e.preventDefault();
+
+	let name = document.getElementById('name_input').value;
+	let color = document.getElementById('color_input').value;
+	let date = document.getElementById('date_input').value;
+	let time = document.getElementById('time_input').value;
+
+	timers.push({
+		name: name,
+		color: color,
+		date: moment(date)
+	});
+
+	loadTimers();
+	document.body.classList.remove('dialog');
+
+	this.reset();
+
+	return false;
+};
 
 
 function loadTimers() {
@@ -91,7 +123,6 @@ function loadTimers() {
 			let label = document.createElement('span');
 			label.appendChild(document.createTextNode(counter_cats[j]));
 			label.classList.add('label');
-			num.appendChild(document.createTextNode("4"));
 			num.classList.add('number');
 			num.dataset.label = counter_cats[j];
 			counter.appendChild(num);
@@ -109,6 +140,9 @@ function loadTimers() {
 		html.push(container);
 	}
 
+	document.querySelector('main').innerHTML = '';
+	clearTimeout(timer_interval);
+
 	for (let i = 0; i < html.length; i++) {
 		document.querySelector('main').appendChild(html[i]);
 	}
@@ -118,24 +152,27 @@ function loadTimers() {
 function startTimers() {
 	let interval = 1000;
 
-	setInterval(function () {
-		for (let i = 0; i < timers.length; i++) {
-			let timer = document.getElementById('t_' + i);
-			let numbers = timer.querySelectorAll('.number');
-			let now = moment();
-			let duration = moment.duration(timers[i].date.diff(now));
-			let times = {};
+	doTimerTick();
+	timer_interval = setInterval(doTimerTick, interval);
+}
 
-			times['years'] = duration.years();
-			times['days'] = duration.days();
-			times['days'] += moment.duration(duration.months(), 'months').asDays();
-			times['hours'] = duration.hours();
-			times['minutes'] = duration.minutes();
-			times['seconds'] = duration.seconds();
+function doTimerTick() {
+	for (let i = 0; i < timers.length; i++) {
+		let timer = document.getElementById('t_' + i);
+		let numbers = timer.querySelectorAll('.number');
+		let now = moment();
+		let duration = moment.duration(timers[i].date.diff(now));
+		let times = {};
 
-			for (let j = 0; j < numbers.length; j++) {
-				numbers[j].innerHTML = times[numbers[j].dataset.label];
-			}
+		times['years'] = duration.years();
+		times['days'] = duration.days();
+		times['days'] += moment.duration(duration.months(), 'months').asDays();
+		times['hours'] = duration.hours();
+		times['minutes'] = duration.minutes();
+		times['seconds'] = duration.seconds();
+
+		for (let j = 0; j < numbers.length; j++) {
+			numbers[j].innerHTML = times[numbers[j].dataset.label];
 		}
-	}, interval);
+	}
 }
