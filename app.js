@@ -55,6 +55,16 @@ var timers = [
 		name: "Christmas",
 		color: "green",
 		date: moment("25-12-2019", "DD-MM-YYYY")
+	},
+	{
+		name: "Finished timer",
+		color: "amber",
+		date: moment("05-05-2019", "DD-MM-YYYY")
+	},
+	{
+		name: "Soonish",
+		color: "purple",
+		date: moment("07-05-2019 16:55", "DD-MM-YYYY HH:mm")
 	}
 ];
 loadTimers();
@@ -76,7 +86,7 @@ new_dialog.onsubmit = function(e) {
 	timers.push({
 		name: name,
 		color: color,
-		date: moment(date)
+		date: moment(date + ' ' + time, "YYYY-MM-DD HH:mm")
 	});
 
 	loadTimers();
@@ -113,9 +123,7 @@ function loadTimers() {
 		if (timers[i].date.diff(moment(), 'minutes') > 0) {
 			counter_cats.push('minutes');
 		}
-		if (timers[i].date.diff(moment(), 'seconds') > 0) {
-			counter_cats.push('seconds');
-		}
+		counter_cats.push('seconds');
 
 		for (let j = 0; j < counter_cats.length; j++) {
 			let counter = document.createElement('div');
@@ -159,20 +167,30 @@ function startTimers() {
 function doTimerTick() {
 	for (let i = 0; i < timers.length; i++) {
 		let timer = document.getElementById('t_' + i);
-		let numbers = timer.querySelectorAll('.number');
-		let now = moment();
-		let duration = moment.duration(timers[i].date.diff(now));
-		let times = {};
+		if (!timer.classList.contains('finished')) {
+			let numbers = timer.querySelectorAll('.number');
+			let now = moment();
+			let duration = moment.duration(timers[i].date.diff(now));
+			let times = {};
 
-		times['years'] = duration.years();
-		times['days'] = duration.days();
-		times['days'] += moment.duration(duration.months(), 'months').asDays();
-		times['hours'] = duration.hours();
-		times['minutes'] = duration.minutes();
-		times['seconds'] = duration.seconds();
+			times['years'] = duration.years();
+			times['days'] = duration.days();
+			times['days'] += moment.duration(duration.months(), 'months').asDays();
+			times['hours'] = duration.hours();
+			times['minutes'] = duration.minutes();
+			times['seconds'] = duration.seconds();
 
-		for (let j = 0; j < numbers.length; j++) {
-			numbers[j].innerHTML = times[numbers[j].dataset.label];
+			for (let j = 0; j < numbers.length; j++) {
+				numbers[j].innerHTML = times[numbers[j].dataset.label];
+			}
+
+			if (duration.asSeconds() <= 0) {
+				timer.classList.add('finished');
+				new Confetti(timer);
+				for (let j = 0; j < numbers.length; j++) {
+					numbers[j].innerHTML = 0;
+				}
+			}
 		}
 	}
 }
