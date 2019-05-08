@@ -19,7 +19,14 @@
 			</div>
 		</nav>
 		<main>
-			<!--<div class="timer blue">
+			<!--
+			<div class="timer blue">
+				<div class="menu">
+					<div>
+						<a class="edit">Edit</a>
+						<a class="delete">Delete</a>
+					</div>
+				</div>
 				<div class="counters">
 					<div>
 						<span class="number">4</span>
@@ -40,35 +47,14 @@
 				</div>
 				<span class="title">Sam's Birthday</span>
 			</div>
-			<div class="timer yellow">
-				<div class="counters">
-					<div>
-						<span class="number">5</span>
-						<span class="label">years</span>
-					</div>
-					<div>
-						<span class="number">288</span>
-						<span class="label">days</span>
-					</div>
-					<div>
-						<span class="number">14</span>
-						<span class="label">hours</span>
-					</div>
-					<div>
-						<span class="number">8</span>
-						<span class="label">minutes</span>
-					</div>
-					<div>
-						<span class="number">27</span>
-						<span class="label">seconds</span>
-					</div>
-				</div>
-				<span class="title">Graduation</span>
-			</div>-->
+		-->
+			<div id="loader">Loading</div>
 		</main>
 		<a href="#" id="new_timer" title="New"></a>
 		<form id="new_dialog">
 			<span class="title">New countdown</span>
+
+			<input type="hidden" id="action" value="new">
 
 			<label for="name_input">Name</label>
 			<div>
@@ -112,9 +98,9 @@
 				<button type="submit" id="add_new">Create</button>
 			</div>
 		</form>
-		<script src="https://apis.google.com/js/platform.js?onload=gapiLoad" async defer></script>
 		<script src="moment.min.js"></script>
 		<script src="confetti.js"></script>
 		<script src="app.js"></script>
+		<script src="https://apis.google.com/js/platform.js?onload=gapiLoad" async defer></script>
 	</body>
 </html>

@@ -1,5 +1,5 @@
-var maxParticleCount = 50; //set max confetti count
-var particleSpeed = 1.5; //set the particle animation speed
+var maxParticleCount = 30; //set max confetti count
+var particleSpeed = 1; //set the particle animation speed
 var confettiFrameInterval = 20; //the confetti animation frame interval
 var supportsAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame;
 var colors = ["DodgerBlue", "OliveDrab", "Gold", "Pink", "SlateBlue", "LightBlue", "Violet", "PaleGreen", "SteelBlue", "SandyBrown", "Chocolate", "Crimson"]

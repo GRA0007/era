@@ -12,10 +12,10 @@
 			<h1>Era</h1>
 			<span id="info">Log in using your Google account to sync your countdowns with all your devices.</span>
 			<div id="login_button">
-				<div class="g-signin2" data-onsuccess="onSignIn"></div>
+				<div id="my-signin2"></div>
 			</div>
 		</div>
-		<script src="https://apis.google.com/js/platform.js" async defer></script>
 		<script src="login.js"></script>
+		<script src="https://apis.google.com/js/platform.js?onload=gapiLoad" async defer></script>
 	</body>
 </html>
